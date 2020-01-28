@@ -167,11 +167,11 @@ QtDisplayWindow* QtHostInterface::createDisplayWindow()
   return m_display_window;
 }
 
-void QtHostInterface::bootSystemFromFile(QString filename)
+void QtHostInterface::bootSystemFromFile(const QString& filename)
 {
   if (!isOnWorkerThread())
   {
-    QMetaObject::invokeMethod(this, "bootSystemFromFile", Qt::QueuedConnection, Q_ARG(QString, filename));
+    QMetaObject::invokeMethod(this, "bootSystemFromFile", Qt::QueuedConnection, Q_ARG(const QString&, filename));
     return;
   }
 
@@ -524,7 +524,7 @@ void QtHostInterface::pauseSystem(bool paused)
   emit emulationPaused(paused);
 }
 
-void QtHostInterface::changeDisc(QString new_disc_filename) {}
+void QtHostInterface::changeDisc(const QString& new_disc_filename) {}
 
 void QtHostInterface::populateSaveStateMenus(const char* game_code, QMenu* load_menu, QMenu* save_menu)
 {
@@ -576,11 +576,11 @@ void QtHostInterface::populateSaveStateMenus(const char* game_code, QMenu* load_
   }
 }
 
-void QtHostInterface::loadState(QString filename)
+void QtHostInterface::loadState(const QString& filename)
 {
   if (!isOnWorkerThread())
   {
-    QMetaObject::invokeMethod(this, "loadState", Qt::QueuedConnection, Q_ARG(QString, filename));
+    QMetaObject::invokeMethod(this, "loadState", Qt::QueuedConnection, Q_ARG(const QString&, filename));
     return;
   }
 
